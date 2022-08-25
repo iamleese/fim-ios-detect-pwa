@@ -8,11 +8,12 @@ const media = window.matchMedia('(display-mode: standalone)').matches;
 const isIOS = isMobile(userAgent).apple.device;
 const closeButton = document.getElementById('ios-pwa-cta-close');
 const ios_cta = document.getElementById('ios-pwa-cta');
+const host = window.location.host;
 
 setTimeout(showPopup, 5 * 1000);
 
 function showPopup(){
-  if( isIOS && !media && !getCookie('ios-pwa-cta')){
+  if( isIOS && !media && getCookie('ios-pwa-cta') != host){
     //show popup
     ios_cta.classList.add('show');
 
@@ -34,7 +35,7 @@ function getCookie(cname) {
 closeButton.addEventListener("click", function () {
     ios_cta.classList.remove('show');
     var timestamp = Math.floor(Date.now() / 1000);
-    setCookie('ios-pwa-cta',timestamp, 30);
+    setCookie('ios-pwa-cta', host, 30);
 });
 
 
