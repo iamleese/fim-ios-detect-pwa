@@ -1,0 +1,31 @@
+#ios-pwa-cta{
+  display: none;
+  background: #ffffff;
+  padding: 1em;
+  width: 80vw;
+  border-radius: 20px;
+  position: fixed;
+  z-index: 999999;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px rgba(0,0,0,20%);
+  &.show{
+    display: block;
+  }
+
+
+  button{
+    display: block;
+    margin: 1em auto 0;
+    clear: both;
+    border-radius: 20px;
+    background-color: #5c73b4;
+    color: #ffffff;
+    border: 0;
+    box-shadow: none;
+    text-transform: uppercase;
+    padding: 1em;
+    cursor: pointer;
+  }
+}

@@ -11,42 +11,23 @@
  */
 
 /**
- * The public-facing functionality of the plugin.
- *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the public-facing stylesheet and JavaScript.
  *
  * @package    Fim_Ios_Detect_Pwa
  * @subpackage Fim_Ios_Detect_Pwa/public
  * @author     Melissa Hiatt, Faith in Marketing <melissa@faithinmarketing.com>
  */
+
 class Fim_Ios_Detect_Pwa_Public {
 
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
-	 */
+
 	private $plugin_name;
 
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
-	 */
 	private $version;
 
-	/**
-	 * Initialize the class and set its properties.
-	 *
-	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
-	 */
+	private $option_name = 'fim_ios_detect_pwa';
+
+
+
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
@@ -54,50 +35,31 @@ class Fim_Ios_Detect_Pwa_Public {
 
 	}
 
-	/**
-	 * Register the stylesheets for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
 	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Fim_Ios_Detect_Pwa_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Fim_Ios_Detect_Pwa_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/fim-ios-detect-pwa-public.css', array(), $this->version, 'all' );
 
 	}
 
-	/**
-	 * Register the JavaScript for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
+
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Fim_Ios_Detect_Pwa_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Fim_Ios_Detect_Pwa_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/fim-ios-detect-pwa-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/fim-ios-detect-pwa-public.js', array(), $this->version, true );
 
 	}
 
+
+	public function fim_ios_display_popup(){
+		global $post;
+		include plugin_dir_path( dirname( __FILE__ ) ) .'public/partials/fim-ios-detect-pwa-public-display.php';
+	  $option_name = 'fim_ios_detect_pwa';
+		$homepage = get_option('page_on_front');
+		//check where to display the popup
+		$display = get_option($option_name.'_display');
+
+		if($display == 'home' && $post->ID == $homepage){
+				fim_ios_popup();
+		}
+
+	}
 }

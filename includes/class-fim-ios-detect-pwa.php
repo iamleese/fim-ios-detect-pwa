@@ -83,17 +83,6 @@ class Fim_Ios_Detect_Pwa {
 
 	/**
 	 * Load the required dependencies for this plugin.
-	 *
-	 * Include the following files that make up the plugin:
-	 *
-	 * - Fim_Ios_Detect_Pwa_Loader. Orchestrates the hooks of the plugin.
-	 * - Fim_Ios_Detect_Pwa_i18n. Defines internationalization functionality.
-	 * - Fim_Ios_Detect_Pwa_Admin. Defines all hooks for the admin area.
-	 * - Fim_Ios_Detect_Pwa_Public. Defines all hooks for the public side of the site.
-	 *
-	 * Create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
-	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
@@ -157,6 +146,11 @@ class Fim_Ios_Detect_Pwa {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		//Settings
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'fim_ios_detect_settings_menu');
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'fim_ios_detect_register_settings');
+
+
 	}
 
 	/**
@@ -171,7 +165,8 @@ class Fim_Ios_Detect_Pwa {
 		$plugin_public = new Fim_Ios_Detect_Pwa_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts', 20, 1 );
+		$this->loader->add_action( 'wp_footer', $plugin_public, 'fim_ios_display_popup' );
 
 	}
 
