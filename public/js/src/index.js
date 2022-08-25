@@ -6,6 +6,8 @@ import './scss/fim-ios-detect-pwa-public.scss';
 const userAgent = window.navigator.userAgent;
 const media = window.matchMedia('(display-mode: standalone)').matches;
 const isIOS = isMobile(userAgent).apple.device;
+const isIpad = isMobile(userAgent).apple.tablet;
+
 const closeButton = document.getElementById('ios-pwa-cta-close');
 const ios_cta = document.getElementById('ios-pwa-cta');
 const host = window.location.host;
@@ -13,7 +15,7 @@ const host = window.location.host;
 setTimeout(showPopup, 5 * 1000);
 
 function showPopup(){
-  if( isIOS && !media && getCookie('ios-pwa-cta') != host){
+  if( (isIOS || isIpad) && !media && getCookie('ios-pwa-cta') != host ){
     //show popup
     ios_cta.classList.add('show');
 

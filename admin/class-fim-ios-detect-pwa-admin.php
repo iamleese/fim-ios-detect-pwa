@@ -140,6 +140,7 @@ class Fim_Ios_Detect_Pwa_Admin {
 		<?php
 	} //fim_ios_detect_pwa_display_cb
 
+	/* TO DO
 	public function fim_ios_detect_pwa_expiration_cb(){
 		$expiration = get_option( $this->option_name . '_expiration' );
 		?>
@@ -147,7 +148,8 @@ class Fim_Ios_Detect_Pwa_Admin {
 			<input type="text" name="<?php echo $this->option_name.'_expiration'; ?>" size="5" value="<?php echo $expiration; ?>" /> days
 		 </fieldset>
 		<?php
-	} //fim_ios_detect_pwa_display_cb
+	} //fim_ios_detect_pwa_expiration_cb
+	*/
 
 	public function fim_ios_detect_pwa_message_cb(){
 
