@@ -61,5 +61,9 @@ class Fim_Ios_Detect_Pwa_Public {
 				fim_ios_popup();
 		}
 
+		if($display == 'all'){
+			fim_ios_popup();
+		}
+
 	}
 }
