@@ -9,8 +9,6 @@ const isIOS = isMobile(userAgent).apple.device;
 const closeButton = document.getElementById('ios-pwa-cta-close');
 const ios_cta = document.getElementById('ios-pwa-cta');
 
-console.log( getCookie('ios-pwa-cta') );
-
 setTimeout(showPopup, 5 * 1000);
 
 function showPopup(){

@@ -91,6 +91,17 @@ class Fim_Ios_Detect_Pwa_Admin {
 			array( 'label_for' => $this->option_name . '_display' )
 		);
 
+		/* TO DO
+		add_settings_field(
+			$this->option_name . '_expiration',
+			__( 'Closed Popup Expires After:', 'fim-ios-detect-pwa' ),
+			array( $this, $this->option_name . '_expiration_cb' ), //callback
+			$this->plugin_name,
+			$this->option_name . '_settings',
+			array( 'label_for' => $this->option_name . '_expiration' )
+		);
+		*/
+
 		add_settings_field(
 			$this->option_name . '_message',
 			__( 'Custom Message:', 'fim-ios-detect-pwa' ),
@@ -99,6 +110,8 @@ class Fim_Ios_Detect_Pwa_Admin {
 			$this->option_name . '_settings',
 			array( 'label_for' => $this->option_name . '_message' )
 		);
+
+
 
 	}
 
@@ -123,6 +136,15 @@ class Fim_Ios_Detect_Pwa_Admin {
 		<input type="radio" id="display_all" name="<?php echo $this->option_name.'_display'; ?>" value="all"
 				 <?php echo ($displaypage == 'all') ? 'checked' : ''; ?>>
 		<label for="display_all">All Pages</label>
+		 </fieldset>
+		<?php
+	} //fim_ios_detect_pwa_display_cb
+
+	public function fim_ios_detect_pwa_expiration_cb(){
+		$expiration = get_option( $this->option_name . '_expiration' );
+		?>
+		<fieldset>
+			<input type="text" name="<?php echo $this->option_name.'_expiration'; ?>" size="5" value="<?php echo $expiration; ?>" /> days
 		 </fieldset>
 		<?php
 	} //fim_ios_detect_pwa_display_cb
